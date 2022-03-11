@@ -19,26 +19,28 @@ void main() {
     usecase = GetBlogPostUsecase(repository);
   });
 
-  final tBlogPost = [BlogPostEntity(title: "some title", body: "some body", userId: 1, id: 2)];
+  final tBlogPost = BlogPostEntity(
+    title: "some title", body: "some body", userId: 1, id: 2
+  );
 
   final tNoParams = NoParams();
 
   test("should get a list of blog post entities from the repository", () async {
     when(repository)
       .calls(#getBlogPosts)
-      .thenAnswer((_) async => Right<Failure,List<BlogPostEntity>>(tBlogPost));
+      .thenAnswer((_) async => Right<Failure,BlogPostEntity>(tBlogPost));
     final result = await usecase(tNoParams);
     expect(result, Right(tBlogPost));
-    verify(repository);
+    verify(repository).called(#getBlogPosts).withArgs().once();
   });
 
   test("should fail when getting blog post entities from repository", () async {
     when(repository)
       .calls(#getBlogPosts)
       .thenAnswer(
-        (_) async => Left<Failure,List<BlogPostEntity>>(ServerFailure()));
+        (_) async => Left<Failure,BlogPostEntity>(ServerFailure()));
     final result = await usecase(tNoParams);
     expect(result, Left(ServerFailure()));
-    verify(repository);
+    verify(repository).called(#getBlogPosts).withArgs().once();
   });
 }
