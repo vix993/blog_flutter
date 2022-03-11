@@ -27,7 +27,7 @@ void main() {
     final result = await repository.getBlogPosts();
     //Assert
     expect(result, Right(tBlogPostModel));
-    verify(datasource);
+    verify(datasource).called(#getBlogPosts).withArgs();
   });
   test("should return a server failure when datasource is called and is unsuccessful", () async {
     //Arrange
@@ -37,6 +37,6 @@ void main() {
     final result = await repository.getBlogPosts();
     //Assert
     expect(result, Left(ServerFailure()));
-    verify(datasource);
+    verify(datasource).called(#getBlogPosts).withArgs();
   });
 }
