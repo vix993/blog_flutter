@@ -5,8 +5,8 @@ import 'package:equatable/equatable.dart';
 class BlogPostEntity extends Equatable {
   final String title;
   final String body;
-  final Int userId;
-  final Int id;
+  final int userId;
+  final int id;
 
   BlogPostEntity({
     required this.title,

@@ -4,7 +4,6 @@ import 'package:equatable/equatable.dart';
 import 'errors/failures.dart';
 
 abstract class Usecase<Output, Input> {
-  // TODO: create failure
   Future<Either<Failure,Output>> call(Input params);
 }
 
