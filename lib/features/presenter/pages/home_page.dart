@@ -22,8 +22,7 @@ class _HomePageState extends ModularState<HomePage, HomeStore> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar(title: "Blog Posts"),
-      body: SafeArea(
-        child: Center(
+        body: Center(
           child: Column(
             children: <Widget>[
               Text(
@@ -33,12 +32,20 @@ class _HomePageState extends ModularState<HomePage, HomeStore> {
               ),
               Observer(
                 builder: (_) {
-                  return Text('${store.blogPosts.value}');
+                  return Text(
+                    '${store.counter.value}',
+                    style: Theme.of(context).textTheme.displayMedium,
+                  );
                 },
               ),
             ],
           )
         ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          store.increment();
+        },
+        child: Icon(Icons.add),
       )
     );
   }
