@@ -17,7 +17,7 @@ void main() {
     repository = BlogPostRepositoryImplementation(datasource);
   });
 
-  final tBlogPostModel = BlogPostModel(title: "hello", body: "world", userId: 1, id: 1);
+  final tBlogPostModel = [BlogPostModel(title: "hello", body: "world", userId: 1, id: 1)];
 
   test("should return a List of Blog Post Model when it calls the datasource", () async {
     //Arrange

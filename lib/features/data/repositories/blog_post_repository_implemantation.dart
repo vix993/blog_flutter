@@ -12,7 +12,7 @@ class BlogPostRepositoryImplementation implements IBlogPostRepository {
   BlogPostRepositoryImplementation(this.datasource);
   
   @override
-  Future<Either<Failure,BlogPostEntity>> getBlogPosts() async {
+  Future<Either<Failure,List<BlogPostEntity>>> getBlogPosts() async {
     try {
       final result = await datasource.getBlogPosts();
       return Right(result);
